@@ -7,15 +7,15 @@ pipeline {
 
     stages {
 
-        stage('Build') {
+          stage('Build') {
             steps {
-                sh 'mvn clean compile'
+                bat 'mvn clean compile'
             }
         }
 
         stage('Package') {
             steps {
-                sh 'mvn package'
+                bat 'mvn package'
             }
         }
     }
