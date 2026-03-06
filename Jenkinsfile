@@ -1,31 +1,24 @@
 pipeline {
     agent any
 
-    tools {
-        maven 'Maven3'      // Maven name configured in Jenkins Global Tool Configuration         // JDK configured in Jenkins
-    }
-
     stages {
 
-          stage('Build') {
+        stage('Checkout') {
             steps {
-                bat 'mvn clean compile'
+                git 'https://github.com/sayanthsanthosh48-cloud/maven-demo1.git'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'mvn clean compile'
             }
         }
 
         stage('Package') {
             steps {
-                bat 'mvn package'
+                sh 'mvn package'
             }
-        }
-    }
-
-    post {
-        success {
-            echo 'Build Successful'
-        }
-        failure {
-            echo 'Build Failed'
         }
     }
 }
